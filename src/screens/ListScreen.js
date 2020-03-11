@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, StyleSheet, View, FlatList } from 'react-native';
 
-const ListScreen = () => {
+const ListScreen = props => {
     const friends = [{
         name: 'John',
         age: 21

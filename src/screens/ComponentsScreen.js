@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, StyleSheet, View } from 'react-native';
 
-const ComponentsScreen = () => {
+const ComponentsScreen = props => {
     const name = 'Kornholio';
 
     return (
