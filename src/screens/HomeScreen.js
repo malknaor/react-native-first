@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, StyleSheet, View, Button, TouchableOpacity } from 'react-native';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 const HomeScreen = ({ navigation }) => {
   return (
@@ -21,16 +22,24 @@ const HomeScreen = ({ navigation }) => {
         style={styles.buttonStyle}
         onPress={() => navigation.navigate('Components')}
       >
-        <Text style={styles.text}>
-          Go to Components Demo
+        <Text style={styles.buttonText}>
+          Go to Components Screen Demo
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.buttonStyle}
         onPress={() => navigation.navigate('List')}
       >
-        <Text style={styles.text}>
-          Go to List Demo
+        <Text style={styles.buttonText}>
+          Go to List Screen Demo
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.buttonStyle}
+        onPress={() => navigation.navigate('Image')}
+      >
+        <Text style={styles.buttonText}>
+          Go to Image Screen Demo
         </Text>
       </TouchableOpacity>
     </View>
@@ -39,8 +48,13 @@ const HomeScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: 20,
+    fontSize: 30,
     textAlign: 'center'
+  },
+  buttonText: {
+    fontSize: 20,
+    textAlign: 'center',
+    color: 'blue'
   },
   buttonStyle: {
     marginVertical: 10
