@@ -33,7 +33,7 @@ const ListScreen = () => {
             data={friends}
             renderItem={({ item }) => {
                 return (
-                    <Text style={style.listStyle}>
+                    <Text style={styles.listStyle}>
                         {`${item.name} - Age ${item.age}`}
                     </Text>
                 )
@@ -42,7 +42,7 @@ const ListScreen = () => {
     );
 };
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
     listStyle: {
         fontSize: 30,
         textAlign: 'center',
