@@ -20,7 +20,7 @@ const ColorScreen = () => {
                 keyExtractor={color => color}
                 renderItem={({ item }) => {
                     return (
-                        <View style={{ ...styles.ColorScreen, height: 100, width: 100, backgroundColor: item }}></View>
+                        <View style={{ ...styles.ColorScreen, height: 100, width: 400, backgroundColor: item }}></View>
                     );
                 }}>
             </FlatList>
