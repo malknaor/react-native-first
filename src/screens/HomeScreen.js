@@ -1,6 +1,6 @@
 import React from 'react';
-import { Text, StyleSheet, View, Button, TouchableOpacity } from 'react-native';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+import { Text, StyleSheet, View } from 'react-native';
+import NavigationButton from '../Components/NavigationButton';
 
 const HomeScreen = ({ navigation }) => {
   return (
@@ -8,64 +8,12 @@ const HomeScreen = ({ navigation }) => {
       <Text style={styles.text}>
         Hi There!
       </Text>
-      {/* <Button
-        style={styles.buttonStyle}
-        title="Go to Components Demo"
-        onPress={() => navigation.navigate('Components')}
-      />
-      <Button
-        style={styles.buttonStyle}
-        title="Go to List Demo"
-        onPress={() => navigation.navigate('List')}
-      /> */}
-      <TouchableOpacity
-        style={styles.buttonStyle}
-        onPress={() => navigation.navigate('Components')}
-      >
-        <Text style={styles.buttonText}>
-          Go to Components Demo
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.buttonStyle}
-        onPress={() => navigation.navigate('List')}
-      >
-        <Text style={styles.buttonText}>
-          Go to List Demo
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.buttonStyle}
-        onPress={() => navigation.navigate('Image')}
-      >
-        <Text style={styles.buttonText}>
-          Go to Image Demo
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.buttonStyle}
-        onPress={() => navigation.navigate('Counter')}
-      >
-        <Text style={styles.buttonText}>
-          Go to Counter Demo
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.buttonStyle}
-        onPress={() => navigation.navigate('Color')}
-      >
-        <Text style={styles.buttonText}>
-          Go to Color Demo
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.buttonStyle}
-        onPress={() => navigation.navigate('Square')}
-      >
-        <Text style={styles.buttonText}>
-          Go to Square Demo
-        </Text>
-      </TouchableOpacity>
+      <NavigationButton text="Go to Components Demo" onPress={() => navigation.navigate('Components')}/>
+      <NavigationButton text="Go to List Demo" onPress={() => navigation.navigate('List')}/>
+      <NavigationButton text="Go to Image Demo" onPress={() => navigation.navigate('Image')}/>
+      <NavigationButton text="Go to Counter Demo" onPress={() => navigation.navigate('Counter')}/>
+      <NavigationButton text="Go to Color Demo" onPress={() => navigation.navigate('Color')}/>
+      <NavigationButton text="Go to Square Demo" onPress={() => navigation.navigate('Square')}/>
     </View>
   );
 };
@@ -75,14 +23,6 @@ const styles = StyleSheet.create({
     fontSize: 30,
     textAlign: 'center'
   },
-  buttonText: {
-    fontSize: 20,
-    textAlign: 'center',
-    color: 'blue'
-  },
-  buttonStyle: {
-    marginVertical: 10
-  }
 });
 
 export default HomeScreen;
