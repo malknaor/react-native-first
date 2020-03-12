@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, StyleSheet, View } from 'react-native';
+
 import NavigationButton from '../Components/NavigationButton';
 
 const HomeScreen = ({ navigation }) => {
@@ -15,6 +16,7 @@ const HomeScreen = ({ navigation }) => {
       <NavigationButton text="Go to Color Demo" onPress={() => navigation.navigate('Color')}/>
       <NavigationButton text="Go to Square Demo" onPress={() => navigation.navigate('Square')}/>
       <NavigationButton text="Go to Text Demo" onPress={() => navigation.navigate('Text')}/>
+      <NavigationButton text="Go to Box Demo" onPress={() => navigation.navigate('Box')}/>
     </View>
   );
 };
