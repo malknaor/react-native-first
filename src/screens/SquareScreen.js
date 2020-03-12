@@ -1,44 +1,74 @@
-import React, { useState } from 'react';
+import React, { useReducer, useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Toast from 'react-native-simple-toast';
 
 import ColorCounter from '../Components/ColorCounter';
 
-const COLOR_INC = 15;
+const COLOR_INC_DEC_VALUE = 15;
+
+const rgbReducer = (state, action) => {
+    switch (action.type) {
+        case "INC_RED":
+            return { ...state, red: state.red + COLOR_INC_DEC_VALUE };
+        case "DEC_RED":
+            return { ...state, red: state.red - COLOR_INC_DEC_VALUE };
+        case "INC_GREEN":
+            return { ...state, green: state.green + COLOR_INC_DEC_VALUE };
+        case "DEC_GREEN":
+            return { ...state, green: state.green - COLOR_INC_DEC_VALUE };
+        case "INC_BLUE":
+            return { ...state, blue: state.blue + COLOR_INC_DEC_VALUE };
+        case "DEC_BLUE":
+            return { ...state, blue: state.blue - COLOR_INC_DEC_VALUE };
+        default:
+            return state;
+    }
+};
 
 const SquareScreen = () => {
-    const [red, setRed] = useState(0);
-    const [green, setGreen] = useState(0);
-    const [blue, setBlue] = useState(0);
+    const [state, dispatch] = useReducer(rgbReducer, {
+        red: 0,
+        green: 0,
+        blue: 0
+    });
+
+    const dispatchColorChange = useCallback(
+        (type, newValue) => {
+            if (validateNewColorValue(newValue)) {
+                dispatch({type: type})
+            }
+        },
+        []
+    );
 
     return (
         <View style={styles.view}>
             <ColorCounter
                 color="Red"
-                value={red}
-                onIncrease={() => validateAndSetColor(red + COLOR_INC, setRed)}
-                onDecrease={() => validateAndSetColor(red - COLOR_INC, setRed)}
+                value={state.red}
+                onIncrease={() => dispatchColorChange('INC_RED', state.red + COLOR_INC_DEC_VALUE)}
+                onDecrease={() => dispatchColorChange('DEC_RED', state.red - COLOR_INC_DEC_VALUE)}
             />
             <ColorCounter
                 color="Green"
-                value={green}
-                onIncrease={() => validateAndSetColor(green + COLOR_INC, setGreen)}
-                onDecrease={() => validateAndSetColor(green - COLOR_INC, setGreen)}
+                value={state.green}
+                onIncrease={() => dispatchColorChange('INC_GREEN', state.green + COLOR_INC_DEC_VALUE)}
+                onDecrease={() => dispatchColorChange('DEC_GREEN', state.green - COLOR_INC_DEC_VALUE)}
             />
             <ColorCounter
                 color="Blue"
-                value={blue}
-                onIncrease={() => validateAndSetColor(blue + COLOR_INC, setBlue)}
-                onDecrease={() => validateAndSetColor(blue - COLOR_INC, setBlue)}
+                value={state.blue}
+                onIncrease={() => dispatchColorChange('INC_BLUE', state.blue + COLOR_INC_DEC_VALUE)}
+                onDecrease={() => dispatchColorChange('DEC_BLUE', state.blue - COLOR_INC_DEC_VALUE)}
             />
-            <View style={{ ...styles.view, ...styles.colorView, height: '50%', width: '95%', backgroundColor: `rgb(${red},${green},${blue})` }}></View>
+            <View style={{ ...styles.view, ...styles.colorView, height: '50%', width: '95%', backgroundColor: `rgb(${state.red},${state.green},${state.blue})` }}></View>
         </View>
     );
 };
 
-const validateAndSetColor = (newColorValue, setColor) => {
+const validateNewColorValue = (newColorValue) => {
     if (newColorValue >= 0 && newColorValue <= 255) {
-        setColor(newColorValue);
+        return true;
     } else if (newColorValue < 0) {
         Toast.show(`Unable to update, Value < 0`, Toast.LONG);
     } else if (newColorValue > 255) {
@@ -50,7 +80,7 @@ const styles = StyleSheet.create({
     view: {
         display: 'flex',
         margin: 10
-    }, 
+    },
     colorView: {
         justifyContent: 'center',
         alignItems: 'center'
