@@ -1,23 +1,34 @@
-import React, { useState } from 'react';
+import React, { useReducer } from 'react';
 import { Text, StyleSheet, View, TouchableOpacity } from 'react-native';
 
+const counterReducer = (state, action) => {
+    switch (action.type) {
+        case 'INC':
+            return { count: state.count + 1 };
+        case 'DEC':
+            return { count: state.count - 1 };
+        default:
+            return state;
+    }
+};
+
 const CounterScreen = () => {
-    const [counter, setCounter] = useState(0);
+    const [state, dispatch] = useReducer(counterReducer, { count: 0 });
 
     return (
         <View style={styles.view}>
-            <TouchableOpacity onPress={() => setCounter(counter + 1)}>
+            <TouchableOpacity onPress={() => dispatch({ type: 'INC' })}>
                 <Text style={styles.button}>
                     Increment
                 </Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => setCounter(counter - 1)}>
+            <TouchableOpacity onPress={() => dispatch({ type: 'DEC' })}>
                 <Text style={styles.button}>
                     Decrement
                 </Text>
             </TouchableOpacity>
             <Text style={styles.text}>
-                Current Counter: {counter}
+                Current Counter: {state.count}
             </Text>
         </View>
     );

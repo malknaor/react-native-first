@@ -32,7 +32,7 @@ const SquareScreen = () => {
         blue: 0
     });
 
-    const dispatchColorChange = useCallback(
+    const validateAndDispatchColorChange = useCallback(
         (type, newValue) => {
             if (validateNewColorValue(newValue)) {
                 dispatch({type: type})
@@ -46,20 +46,20 @@ const SquareScreen = () => {
             <ColorCounter
                 color="Red"
                 value={state.red}
-                onIncrease={() => dispatchColorChange('INC_RED', state.red + COLOR_INC_DEC_VALUE)}
-                onDecrease={() => dispatchColorChange('DEC_RED', state.red - COLOR_INC_DEC_VALUE)}
+                onIncrease={() => validateAndDispatchColorChange('INC_RED', state.red + COLOR_INC_DEC_VALUE)}
+                onDecrease={() => validateAndDispatchColorChange('DEC_RED', state.red - COLOR_INC_DEC_VALUE)}
             />
             <ColorCounter
                 color="Green"
                 value={state.green}
-                onIncrease={() => dispatchColorChange('INC_GREEN', state.green + COLOR_INC_DEC_VALUE)}
-                onDecrease={() => dispatchColorChange('DEC_GREEN', state.green - COLOR_INC_DEC_VALUE)}
+                onIncrease={() => validateAndDispatchColorChange('INC_GREEN', state.green + COLOR_INC_DEC_VALUE)}
+                onDecrease={() => validateAndDispatchColorChange('DEC_GREEN', state.green - COLOR_INC_DEC_VALUE)}
             />
             <ColorCounter
                 color="Blue"
                 value={state.blue}
-                onIncrease={() => dispatchColorChange('INC_BLUE', state.blue + COLOR_INC_DEC_VALUE)}
-                onDecrease={() => dispatchColorChange('DEC_BLUE', state.blue - COLOR_INC_DEC_VALUE)}
+                onIncrease={() => validateAndDispatchColorChange('INC_BLUE', state.blue + COLOR_INC_DEC_VALUE)}
+                onDecrease={() => validateAndDispatchColorChange('DEC_BLUE', state.blue - COLOR_INC_DEC_VALUE)}
             />
             <View style={{ ...styles.view, ...styles.colorView, height: '50%', width: '95%', backgroundColor: `rgb(${state.red},${state.green},${state.blue})` }}></View>
         </View>
